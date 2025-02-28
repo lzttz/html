@@ -1,31 +1,28 @@
-body {
+body{
     background-color: rgba(240, 128, 128, 0.61);
 }
 
-body .btn {
-    margin-top: 2%;
-    margin-left: 49%;
+body .btn{
+    margin-top: -15px;
+    margin-left: 37%;
     background-color: rgba(0, 0, 0, 0.596);
     color: white;
+    padding: 250px;
+
+}
+
+body .btn2{
     display: block;
-    padding: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-
-}
-
-body .btn2 {
     margin-top: 2%;
-    margin-left: 49%;
+    margin-left: 48%;
     background-color: rgba(0, 0, 0, 0.596);
     color: white;
 }
-
-body h1 {
+body h1{
     text-align: center;
 }
 
-body img.gif {
-    margin-top: 10%;
+body img.gif{
+    margin-top: 20px;
     margin-left: 40%;
 }
