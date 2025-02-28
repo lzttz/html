@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #eeeeee, #ff8e8e);
+    font-family: 'Arial', sans-serif;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.btn {
+
+    position: absolute;
+    top: 500px;
+    left: 960px;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333; /* Cor de fundo sóbria */
+    border: none;
+    border-radius: 8px; /* Bordas levemente arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Sombra suave */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transição suave */
+    text-decoration: none; /* Remove sublinhado */ 
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover{
+
+    background-color: #555; /* Escurece o fundo */
+    transform: translateY(-2px); /* Eleva o botão ligeiramente */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+}
+
+img {
+    width: 700px;
+    height: 700px;
+    right: 20px;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+}

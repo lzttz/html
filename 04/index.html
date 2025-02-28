@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progresso do Amor e Quiz</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/x-icon">
+    
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra de Progresso -->
+        <div id="progresso-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="op">
+            <h1>O quanto eu te amo?</h1>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <button onclick="aumentarProgresso()">Clique aqui</button>
+        </div>
+
+        <!-- Quiz -->
+        <div id="quiz-container" style="display: none;">
+            <img src="88.png" alt="img">
+            <h1>&#x1F498; Quiz da nossa história &#x1F498;</h1>
+
+            <!-- Seção do dia do encontro -->
+            <section id="dia-encontro" class="quiz-section">
+                <h2>Amor, qual dia de hoje?</h2>
+                <input type="number" id="dia" placeholder="Digite o dia">
+                <button onclick="verificarDia()">Verificar</button>
+                <p id="resultado-dia"></p>
+                <button onclick="mostrarProximaSecao('local-encontro')">Prosseguir</button>
+
+            </section>
+
+            <!-- Seção do local do encontro -->
+            <section id="local-encontro" class="quiz-section" style="display: none;">
+                <h2>Onde a gente se conheceu?</h2>
+                <select id="opcao-local">
+                    <option value="1">Escolha</option>
+                    <option value="2">alpha</option>
+                    <option value="3">moon</option>s
+                    <option value="4">alta</option>
+                </select>
+                <button onclick="responderLocal()">Responder</button>
+                <p id="resultado-local"></p>
+            </section>
+
+            <!-- Seção do primeiro assunto íntimo -->
+            <section id="primeiro-assunto" class="quiz-section" style="display: none;">
+                <h2>Qual foi nosso primeiro assunto íntimo?</h2>
+                <select id="opcao-assunto">
+                    <option value="1">Escolha</option>
+                    <option value="2">Minha vida amorosa</option>
+                    <option value="3">Vida amorosa alheia</option>
+                    <option value="4">Sua vida amorosa</option>
+                </select>
+                <button onclick="responderAssunto()">Responder</button>
+                <p id="resultado-assunto"></p>
+            </section>
+
+            <section id="primeira-data" class="quiz-section" style="display: none;">
+                <h2>Qual foi a data que a gente se conheceu?</h2>
+                <select id="opcao-data">
+                    <option value="1">Escolha</option>
+                    <option value="2">25/09/2021</option>
+                    <option value="3">17/07/2021</option>
+                    <option value="4">09/02/2021</option>
+                </select>
+                <button onclick="responderData()">Responder</button>
+                <p id="resultado-data"></p>
+            </section>
+
+            <section id="primeiro-presente" class="quiz-section" style="display: none;">
+                <h2>O que voce quer de primeiro presente?</h2>
+                <select id="opcao-presente">
+                    <option value="1">Escolha</option>
+                    <option value="2">Chocolates</option>
+                    <option value="3">Pelúcia</option>
+                    <option value="4">Buque de flores</option>
+                </select>
+                <button onclick="responderPresente()">Responder</button>
+                <p id="resultado-presente"></p>
+            </section>
+
+            <section id="primeiro-cabelo" class="quiz-section" style="display: none;">
+                <h2>Qual penteado eu mais gosto em você?</h2>
+                <select id="opcao-cabelo">
+                    <option value="1">Escolha</option>
+                    <option value="2">Loiro</option>
+                    <option value="3">Cacheado</option>
+                    <option value="4">Liso</option>
+                    <option value="5">Sair</option>
+                </select>
+                <button onclick="responderCabelo()">Responder</button>
+                <p id="resultado-cabelo"></p>
+            </section>
+
+            <section id="primeiro-msg" class="quiz-section" style="display: none;">
+                <h2>Qual penteado eu mais gosto em você?</h2>
+                <select id="opcao-msg">
+                    <option value="1">Escolha</option>
+                    <option value="2">Mensagem 1</option>
+                    <option value="3">Mensagem 2</option>
+                    <option value="4">Mensagem 3</option>
+                    <option value="5">Mensagem 4</option>
+                    <option value="6">Mensagem 5</option>
+                    <option value="7">Mensagem 6</option>
+                    <option value="8">Sair</option>
+
+                </select>
+                <button onclick="responderMsg()">Responder</button>
+                <p id="resultado-msg"></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9d7e6; /* Cor de fundo suave */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        /* Estilo do símbolo do coração */
+        .heart-symbol {
+            font-size: 100px;
+            color: #e74c3c; /* Vermelho para o coração */
+            animation: pulse 1.5s infinite; /* Animação de pulsação */
+        }
+
+        /* Animação de pulsação */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Estilo do botão */
+        .love-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Efeito ao passar o mouse sobre o botão */
+        .love-button:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+        /* Mensagem oculta inicialmente */
+        .hidden-message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            display: none; /* Inicialmente escondida */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Símbolo do coração -->
+    <div class="heart-symbol">❤️</div>
+
+    <!-- Botão para exibir a mensagem -->
+    <button class="love-button" onclick="showMessage()">Clique Aqui</button>
+
+    <!-- Mensagem de amor oculta -->
+    <div id="message" class="hidden-message">
+        Você é a razão do meu sorriso! ❤️
+    </div>
+
+    <script>
+        // Função para exibir a mensagem
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.style.display = 'block'; // Torna a mensagem visível
+        }
+    </script>
+
+</body>
+</html>

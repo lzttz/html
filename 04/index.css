@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    text-align: center;
+    background-color: #fc0101;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 253, 253, 0.1);
+}
+
+
+
+h1 {
+    color: #fff;
+    margin-bottom: 20px;z-index: ;
+    font-family: serif;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 20px;
+}
+
+.progress {
+    width: 0%; /* Inicialmente sem progresso */
+    height: 100%;
+    background-color: #ff0000;
+    border-radius: 10px;
+    transition: width 0.3s ease; /* Animação suave */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #222121;
+    color: #fff;
+    cursor: pointer;
+ 
+}
+
+button:hover {
+    background-color: yellow;
+    background-color: #555;
+}
+
+#quiz-container {
+    display: none; /* Inicialmente oculto */
+}
+
+.quiz-section {
+    margin-bottom: 20px;
+}
+
+select, button {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #f1f1f1;
+}

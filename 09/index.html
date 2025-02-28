@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha para viagem com meu amor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+            text-align: center;
+        }
+
+        input:focus {
+            background-color: #e6f7ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Planilha para viagem com meu amor</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Coluna A</th>
+                <th>Coluna B</th>
+                <th>Coluna C</th>
+                <th>Coluna D</th>
+                <th>Coluna E</th>
+                <th>Coluna F</th>
+                <th>Coluna G</th>
+                <th>Coluna H</th>
+                <th>Coluna I</th>
+                <th>Coluna J</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Gerar 50 linhas -->
+            <script>
+                const rows = 25;
+                const columns = 10;
+
+                for (let i = 1; i <= rows; i++) {
+                    document.write('<tr>');
+                    document.write(`<td>${i}</td>`); // Número da linha
+                    for (let j = 1; j < columns; j++) {
+                        document.write('<td><input type="text"></td>'); // Células editáveis
+                    }
+                    document.write('</tr>');
+                }
+            </script>
+        </tbody>
+    </table>
+</body>
+</html>

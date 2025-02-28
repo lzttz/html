@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz do Nosso Amor</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <img src="01/op650.jpg" alt="img">
+        <h1>&#x1F498; Quiz da nossa historia &#x1F498;</h1>
+
+        <!-- Seção do dia do encontro -->
+        <section id="dia-encontro" class="quiz-section">
+            <h2>Amor, qual dia de hoje?</h2>
+            <input type="number" id="dia" placeholder="Digite o dia">
+            <button onclick="verificarDia()">Verificar</button>
+            <p id="resultado-dia"></p>
+        </section>
+        <section id = "amor">
+                <button onclick="mostrarProximaSecao('local-encontro')">Verificar</button>
+            
+        </section>
+        
+        <!-- Seção do local do encontro -->
+        <section id="local-encontro" class="quiz-section" style="display: none;">
+            <h2>Onde a gente se conheceu?</h2>
+            <select id="opcao-local">
+                <option value="1">Escolha</option>
+                <option value="2">Academia</option>
+                <option value="3">Faculdade</option>
+                <option value="4">Escola</option>
+            </select>
+            <button onclick="responderLocal()">Responder</button>
+            <p id="resultado-local"></p>
+        </section>
+
+        <!-- Seção do primeiro assunto íntimo -->
+        <section id="primeiro-assunto" class="quiz-section" style="display: none;">
+            <h2>Qual foi nosso primeiro assunto íntimo?</h2>
+            <select id="opcao-assunto">
+                <option value="1">Escolha</option>
+                <option value="2">Minha vida amorosa</option>
+                <option value="3">Vida amorosa alheia</option>
+                <option value="4">Sua vida amorosa</option>
+            </select>
+            <button onclick="responderAssunto()">Responder</button>
+            <p id="resultado-assunto"></p>
+        </section>
+
+        <!-- Outras seções do quiz -->
+        <!-- Adicione as outras seções aqui -->
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
