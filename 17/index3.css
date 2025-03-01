@@ -23,6 +23,8 @@ body h1{
 }
 
 body img.gif{
+    display: block;
     margin-top: 5%;
     margin-left: 40%;
+    margin: auto;
 }

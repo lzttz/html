@@ -26,6 +26,8 @@ body h1 {
 }
 
 body img.gif {
-    margin-top: 10%;
+    display: block;
+    margin-top: 50%;
     margin-left: 40%;
+    margin: auto;
 }

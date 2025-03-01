@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor com Corações</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9d7e6; /* Fundo suave */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Estilo da carta */
+        .love-letter {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-letter h1 {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .love-letter p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .love-letter .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Corações flutuantes */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e74c3c;
+            transform: rotate(45deg);
+            animation: floatHeart 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        /* Animação dos corações */
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) translateX(calc(100vw * var(--random-x))) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* JavaScript adicionará corações dinamicamente */
+    </style>
+</head>
+<body>
+
+    <!-- Carta de amor -->
+    <div class="love-letter">
+        <h1>Meu Querido Amor</h1>
+        <p>Ao contemplar os astros desta noite, meus pensamentos voltam-se a ti, como agulhas de uma bússola apontam sempre para o norte.</p>
+        <p>Em cada batida deste coração, em cada suspiro desta alma, existe um eco eterno do teu nome, uma memória perene do teu sorriso.</p>
+        <p class="signature">Eternamente seu</p>
+    </div>
+
+    <script>
+        // Função para criar corações flutuantes
+        function createFloatingHearts() {
+            const numberOfHearts = 20; // Número de corações na tela
+
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                // Posicionamento aleatório horizontal
+                const randomX = Math.random();
+                heart.style.setProperty('--random-x', randomX);
+
+                // Posicionamento inicial vertical
+                heart.style.top = `${Math.random() * 100}vh`;
+
+                // Adiciona o coração ao corpo da página
+                document.body.appendChild(heart);
+
+                // Remove o coração após a animação terminar
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
+        }
+
+        // Cria corações continuamente
+        setInterval(createFloatingHearts, 2000);
+    </script>
+
+</body>
+</html>
