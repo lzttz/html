@@ -7,8 +7,10 @@ body .btn{
     margin-left: 47%;
     background-color: rgba(0, 0, 0, 0.596);
     color: white;
-    padding: 50px;
-
+    padding: 300px;
+    margin: auto;
+    display: block;
+    border-radius: 70px;
 }
 
 body .btn2{
@@ -17,6 +19,8 @@ body .btn2{
     margin-left: 48%;
     background-color: rgba(0, 0, 0, 0.596);
     color: white;
+    padding: 10px;
+    border-radius: 10px;
 }
 body h1{
     text-align: center;
