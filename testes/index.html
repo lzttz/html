@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Calçados Premium</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a href="#" class="logo">LUXE</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Produtos</a>
+            <a href="#about">Sobre</a>
+            <a href="#contact">Contato</a>
+        </div>
+        <div class="cart-icon">
+            🛒
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Elegância em Cada Passo</h1>
+            <p>Descubra nossa coleção exclusiva de calçados premium</p>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2>Nossa Coleção</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Produtos serão inseridos via JavaScript -->
+        </div>
+    </section>
+
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">×</span>
+        </div>
+        <div class="cart-items">
+            <!-- Itens do carrinho serão inseridos via JavaScript -->
+        </div>
+        <div class="cart-total">
+            <h4>Total: R$ <span id="cartTotal">0.00</span></h4>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

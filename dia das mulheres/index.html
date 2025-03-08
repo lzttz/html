@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mulher da minha vida</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" type="image/x-icon">
+    
+    <style>
+        /* Definindo um estilo básico */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f2f4;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Estilos para a seção principal */
+        header {
+            background-image: url('fts/IMG_0828.JPEG');
+            background-size: cover;
+            background-position: center;
+            height: 120vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        header p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        /* Efeito de fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeito de animação no coração */
+        @keyframes floatingHeart {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Adicionando o efeito no coração */
+        .heart {
+            animation: floatingHeart 2s ease-in-out infinite;
+            font-size: 3rem;
+            color: #f06292;
+        }
+
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .memories img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .memories {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .memory-card {
+            display: block;
+            height: 40vh;
+            height: 50%;
+            width: 20%;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .memory-card p {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .letter {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .quote {
+            background-color: #ff000036;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .quote:hover {
+            transform: scale(1.1);
+            /* Aumenta a citação */
+            filter: brightness(1.2);
+            /* Aumenta o brilho */
+        }
+
+        /* Efeito desfocar para as outras citações */
+        .section .quote {
+            filter: blur(2px);
+            opacity: 0.6;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .section .quote:hover {
+            filter: none;
+            opacity: 1;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .timeline-item .date {
+            font-size: 2rem;
+            font-family: 'Dancing Script', cursive;
+            color: #00000069;
+        }
+
+        .timeline-item .description {
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn {
+            position: absolute;
+            border-radius: 10px;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+
+        }
+        .mnt{
+
+
+        }
+   
+        .mnt h1{
+
+            text-align: center;
+        }
+   
+        .mnt iframe{
+            max-width: 100%;
+            object-fit: cover;
+            margin: 20px;
+    max-width: 100%;  /* Define a largura máxima responsiva */
+    height: 315px; /* Ajuste da altura fixa ou responsiva */
+    position: relative;
+    overflow: hidden;
+        }
+   
+   </style>
+</head>
+
+<body>
+
+    <!-- Seção principal -->
+    <header>
+        <div>
+            <h1>Feliz Dia das Mulheres</h1>
+            <p>Para o amor da minha vida</p>
+            <div class="heart">❤️</div>
+            <a href="pag2.html"><button class="btn" aria-label="Clique para ver o cardápio">Back</button></a>
+        </div>
+    </header>
+
+    <!-- Seção de Memórias -->
+    <section class="section memories">
+        <h2>Memórias</h2>
+        <div class="memory-card">
+            <img src="fts/Fotos do iCloud/IMG_0675.JPEG" alt="Momento Especial 1">
+            <p>Nosso Primeiro Encontro</p>
+        </div>
+        <div class="memory-card">
+            <img src="fts/Fotos do iCloud/IMG_0825.JPEG" alt="Momento Especial 2">
+            <p>Viagem Inesquecível</p>
+        </div>
+        <div class="memory-card">
+            <img src="fts/bce75393-8232-40f8-90f1-785a6819cb91.JPEG " alt="Momento Especial 3">
+            <p>Nosso Amor</p>
+        </div>
+    </section>
+
+
+    <section class="mnt">
+
+        <h1>Momentos Especiais</h1>
+        <iframe width="560" height="315" src="fts/9ae6b0103316412f8192910e0ec2fbd222.MP4" frameborder="0"></iframe>
+        <iframe width="560" height="315"src="fts/IMG_0687kkkk.MP4" frameborder="0"></iframe>
+        <iframe width="560" height="315"src="fts/vd4.MP4" frameborder="0"></iframe>
+        <iframe width="560" height="315"src="fts/vd3.MP4" frameborder="0"></iframe>
+        <iframe width="560" height="315"src="fts/vd5.MP4" frameborder="0"></iframe>
+        <iframe width="560" height="315"src="fts/vd6.MP4" frameborder="0"></iframe>
+    </section>
+    <!-- Carta de Amor -->
+    <section class="section letter">
+        <h2>Carta de Amor</h2>
+        <p>Hoje, no Dia das Mulheres, não poderia deixar de expressar a imensa gratidão que sinto por ter você na minha
+            vida. Não é apenas em um dia especial como esse que eu reconheço a mulher maravilhosa que você é, mas todos
+            os dias sou grato por te conhecer, por te amar e por ter você ao meu lado.
+
+            Você é mais do que apenas uma mulher incrível, você é a minha princesa, a razão do meu sorriso e minha
+            melhor amiga. Cada olhar, cada gesto seu me encanta e me faz ver o quão sortudo sou por compartilhar minha
+            vida com você. Que este Dia das Mulheres seja um lembrete do quanto você é especial, do quanto é amada e
+            admirada não só por mim, mas por todos ao seu redor que sabe da pessoa incrível que você é.
+        <p>Feliz Dia das Mulheres, meu amor. Que a cada dia você se lembre de quão forte, bela e incrível é, e que o
+            mundo é um lugar melhor por sua presença.</p>
+
+        <p>Com todo meu amor,</p>
+        <p><strong>Pessoa que mais te admira.</strong></p>
+    </section>
+
+    <!-- Citações -->
+    <section class="section">
+        <h2>Palavras de Amor</h2>
+        <div class="quote">"Você é a mulher que torna minha vida mais linda todos os dias."</div>
+        <div class="quote">"Te admiro não só pelo que você é, mas pela força e beleza que carrega."</div>
+        <div class="quote">"O mundo é mais bonito com você nele. Te amo, meu amor."</div>
+        <div class="quote">"Feliz Dia das Mulheres, meu amor, você é tudo para mim!"</div>
+    </section>
+
+    <!-- Linha do tempo -->
+    <section class="section timeline">
+        <h2>Nossa História</h2>
+        <div class="timeline-item">
+            <div class="date">2021</div>
+            <div class="description">O dia em que escutei sua voz pela primeira vez e nossas vidas mudaram para sempre.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2021/2025</div>
+            <div class="description">Descobrindo o mundo juntos, criando memórias que durarão para sempre.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2025</div>
+            <div class="description">Realizei o sonho te de ver e cada dia mais apaixonado, construindo nossa história
+                de amor.</div>
+        </div>
+    </section>
+
+    <!-- Mensagem Final -->
+    <section class="section">
+        <h2>Te Amo!</h2>
+        <p>Feliz Dia das Mulheres, meu amor. Você é a razão do meu sorriso e a dona do meu coração.</p>
+        <div class="heart">❤️</div>
+    </section>
+
+</body>
+
+</html>

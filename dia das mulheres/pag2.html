@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia das Mulheres, Meu Amor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #fffefe, #ff00009d);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ff1414;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1:hover {
+            animation: rainbow 2s infinite;
+        }
+        .message {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+            color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .message:hover {
+            background: rgba(255, 20, 147, 0.1);
+            transform: scale(1.05);
+        }
+        .heart {
+            color: #ff1414;
+            font-size: 2rem;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .heart:hover {
+            animation: heartBeat 0.6s infinite;
+        }
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .btn {
+            background: #ff1414;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background: #ff69b4;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) rotate(35deg);
+            transition: transform 0.5s;
+        }
+        .btn:hover::after {
+            transform: translate(-50%, -50%) rotate(35deg) translateX(100%);
+        }
+        @keyframes rainbow {
+            0% { color: #ff1493; }
+            20% { color: #ff4500; }
+            40% { color: #ff69b4; }
+            60% { color: #ff1493; }
+            80% { color: #ff4500; }
+            100% { color: #ff1493; }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.4); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .sparkle {
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feliz Dia das Mulheres <span class="heart" onclick="createFloatingHearts(event)">♥</span></h1>
+        <div id="message" class="message"></div>
+        <button class="btn" onclick="showNextMessage()">Próxima Mensagem</button>
+        <a href="index.html"><button class="btn" onclick="showNextMessage()">Proximo</button></a>
+    </div>
+
+    <script>
+        const messages = [
+            "Para a mulher mais especial do mundo: você é minha inspiração diária.",
+            "Seu sorriso ilumina meus dias e sua força me motiva a ser melhor.",
+            "Você é a prova de que os anjos existem, pois tenho um ao meu lado.",
+            "Sua beleza não está apenas no exterior, mas principalmente no seu coração.",
+            "Com você, cada momento se torna mágico e especial.",
+            "Você é a razão do meu sorriso e a dona do meu coração.",
+            "Ter você em minha vida é o maior presente que já recebi.",
+            "Seu amor me faz querer ser uma pessoa melhor a cada dia."
+        ];
+
+        let currentIndex = -1;
+
+        function showNextMessage() {
+            currentIndex = (currentIndex + 1) % messages.length;
+            const messageElement = document.getElementById('message');
+            messageElement.style.opacity = 0;
+            setTimeout(() => {
+                messageElement.textContent = messages[currentIndex];
+                messageElement.style.opacity = 1;
+            }, 500);
+            createSparkles(event);
+        }
+
+        function createFloatingHearts(event) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '♥';
+            heart.className = 'floating-hearts';
+            heart.style.left = event.clientX + 'px';
+            heart.style.top = event.clientY + 'px';
+            heart.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            heart.style.fontSize = '20px';
+            heart.style.animation = 'floatHeart 3s ease-out forwards';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        function createSparkles(event) {
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                document.body.appendChild(sparkle);
+
+                const x = event ? event.clientX : window.innerWidth / 2;
+                const y = event ? event.clientY : window.innerHeight / 2;
+                
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                
+                const angle = (Math.random() * Math.PI * 2);
+                const velocity = 2 + Math.random() * 4;
+                const size = 2 + Math.random() * 3;
+                
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+
+                let life = 0;
+                const animate = () => {
+                    life += 0.1;
+                    sparkle.style.transform = `translate(
+                        ${Math.cos(angle) * velocity * life * 10}px,
+                        ${Math.sin(angle) * velocity * life * 10}px
+                    )`;
+                    sparkle.style.opacity = Math.max(0, 1 - life);
+
+                    if (life < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        sparkle.remove();
+                    }
+                };
+                requestAnimationFrame(animate);
+            }
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) {
+                createSparkles(e);
+            }
+        });
+
+        // Mostrar primeira mensagem ao carregar
+        showNextMessage();
+    </script>
+</body>
+</html>
