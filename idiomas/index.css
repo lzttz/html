@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #000000f6;
+    color: #fcfcfc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+.heart {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    animation: floatHeart 6s linear infinite;
+    z-index: 1;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Componente do seletor de idiomas */
+.language-switcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background-image: linear-gradient(to bottom right, #eef2ff, #dbeafe);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    color: #3b82f6;
+    background-image: url('IMG_0828.JPEG');
+    background-size: cover;
+    height: 65vh;
+    
+    background-position: bottom 30px;
+    
+}
+
+/* Ícone do globo */
+.globe-container {
+    margin-bottom: 2rem;
+    color: #000000f8;
+}
+
+.globe-icon {
+    font-size: 3rem;
+}
+
+.globe-spin {
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Botão de idioma */
+.language-button {
+    background-color: rgba(0, 0, 0, 0.212);
+    border-radius: 9999px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    width: 16rem;
+    height: 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+}
+
+.language-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.language-button:active {
+    transform: scale(0.95);
+}
+
+/* Conteúdo do idioma */
+.language-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.language-content.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.language-content.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flag {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.language-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.greeting {
+    font-size: 0.875rem;
+    color: #ff0000;
+    margin-top: 0.5rem;
+    font-weight: bolder;
+}
+
+.instruction {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 1rem;
+}
