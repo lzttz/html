@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const languages = [
         { code: "en", name: "English", flag: "🇬🇧", greeting: "I love you!" },
         { code: "zh", name: "中文", flag: "🇨🇳", greeting: "我爱你!" },
-        { code: "es", name: "Español", flag: "🇪🇸", greeting: "Te amo!" },
+        { code: "es", name: "Español", flag: "🇪🇸", greeting: "Te quiero!" },
         { code: "fr", name: "Français", flag: "🇫🇷", greeting: "Je t'aime!" },
         { code: "de", name: "Deutsch", flag: "🇩🇪", greeting: "Ich liebe dich!" },
         { code: "pt", name: "Português", flag: "🇧🇷", greeting: "Te amo!" },

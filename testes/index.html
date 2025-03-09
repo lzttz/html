@@ -1,55 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animação com Cursor</title>
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            background-color: #f0f0f0;
-        }
-
-        /* Estilo do círculo */
-        .cursor {
-            
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: red;
-            pointer-events: none; /* Impede a interação com o cursor */
-            transform: translate(-50%, -50%);
-            animation: expand 0.3s ease-out infinite alternate;
-        }
-
-        /* Animação de expansão e contração */
-        @keyframes expand {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.5);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps</title>
+  <style>
+    /* Estilo básico para o mapa */
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Elemento que seguirá o cursor -->
-    <div class="cursor" id="cursor"></div>
+  <h3>Meu Mapa</h3>
+  <div id="map"></div>
 
-    <script>
-        const cursor = document.getElementById('cursor');
+  <script>
+    // Função para inicializar o mapa
+    function initMap() {
+      var mapOptions = {
+        center: { lat: -23.550520, lng: -46.633308 },  // Exemplo: São Paulo
+        zoom: 12
+      };
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    }
+  </script>
 
-        // Atualiza a posição do cursor na tela
-        document.addEventListener('mousemove', (event) => {
-            cursor.style.left = `${event.pageX}px`;
-            cursor.style.top = `${event.pageY}px`;
-        });
-    </script>
+  <!-- Substitua YOUR_API_KEY pela sua chave de API do Google -->
+  <script src="https://www.google.com/maps/place/Av.+Jos%C3%A9+M%C3%A1rio+Braga+Lisboa+%26+Av.+Luiz+Roxo+da+Mota+-+S%C3%A3o+Geraldo,+MG,+36530-000/@-20.9185399,-42.8314935,17z/data=!3m1!4b1!4m6!3m5!1s0xa3406702ddd74f:0x1545d9f308fbb4dd!8m2!3d-20.9185399!4d-42.8314935!16s%2Fg%2F11f37zmc8c?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" async defer></script>
 
 </body>
 </html>
