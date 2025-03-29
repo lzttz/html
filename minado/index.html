@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINESWEEPER</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="banner">
+            <h1>MINESWEEPER</h1>
+        </div>
+
+        <div class="menu">
+            <h2>Menu Principal</h2>
+            <button onclick="newGame(false)">Novo Jogo</button>
+            <button onclick="newGame(true)">Jogo Personalizado</button>
+            <button onclick="resumeGame()">Continuar</button>
+            <button onclick="loadGame()">Carregar Jogo</button>
+            <button onclick="showRanking()">Ranking</button>
+            <button onclick="showHelp()">Ajuda</button>
+        </div>
+
+        <div class="game-container">
+            <div class="game-info">
+                <h2>Informações do Jogo</h2>
+                <p>Jogador: <span id="player-name">-</span></p>
+                <p>Pontos: <span id="points">0</span></p>
+                <p>Tempo: <span id="time">00:00</span></p>
+                <p>Minas: <span id="bombs">0</span></p>
+            </div>
+
+            <div id="board" class="board"></div>
+
+            <div class="controls">
+                <button id="flag-btn" onclick="toggleFlagMode()">Modo Revelar</button>
+                <button onclick="giveUp()">Desistir</button>
+                <button onclick="backToMenu()">Menu</button>
+            </div>
+        </div>
+
+        <div class="help">
+            <h2>Ajuda</h2>
+            <h3>Como Jogar</h3>
+            <p>1. Clique em uma célula para revelá-la</p>
+            <p>2. Use o modo bandeira para marcar minas suspeitas</p>
+            <p>3. Os números indicam quantas minas estão próximas</p>
+            <p>4. Evite as minas e revele todas as células seguras</p>
+            <button onclick="hideHelp()">Voltar ao Menu</button>
+        </div>
+
+        <div class="ranking">
+            <h2>Ranking</h2>
+            <div id="ranking-list">
+                <p>1. João - Fácil - 100 pontos</p>
+                <p>2. Maria - Médio - 85 pontos</p>
+                <p>3. Pedro - Difícil - 70 pontos</p>
+            </div>
+            <button onclick="hideRanking()">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
