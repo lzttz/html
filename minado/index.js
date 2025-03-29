@@ -11,6 +11,7 @@ let playerName = '';
 let points = 0;
 let totalMines = 0;
 let currentDifficulty = '';
+let remainingFlags = 0;
 
 // Dificuldades do jogo
 const difficulties = {
@@ -30,11 +31,14 @@ function initGame(rows, cols, mineCount) {
         timeElapsed = 0;
         points = 0;
         totalMines = mineCount;
+        remainingFlags = mineCount;
+        isFlagMode = false;
         
         // Atualiza a interface
         document.getElementById('time').textContent = '00:00';
         document.getElementById('points').textContent = '0';
-        document.getElementById('bombs').textContent = mineCount;
+        document.getElementById('bombs').textContent = remainingFlags;
+        document.getElementById('flag-btn').textContent = 'Modo Revelar';
         
         // Cria o tabuleiro
         createBoard(rows, cols);
@@ -93,7 +97,11 @@ function handleCellClick(event) {
             startGame(row, col);
         }
         
-        revealCell(row, col);
+        if (isFlagMode) {
+            toggleFlag(row, col);
+        } else {
+            revealCell(row, col);
+        }
     } catch (error) {
         console.error('Erro ao processar clique:', error);
     }
@@ -250,13 +258,15 @@ function toggleFlag(row, col) {
         if (flags.includes(key)) {
             flags = flags.filter(f => f !== key);
             cell.classList.remove('flag');
-            document.getElementById('bombs').textContent = 
-                parseInt(document.getElementById('bombs').textContent) + 1;
-        } else {
+            remainingFlags++;
+            document.getElementById('bombs').textContent = remainingFlags;
+        } else if (remainingFlags > 0) {
             flags.push(key);
             cell.classList.add('flag');
-            document.getElementById('bombs').textContent = 
-                parseInt(document.getElementById('bombs').textContent) - 1;
+            remainingFlags--;
+            document.getElementById('bombs').textContent = remainingFlags;
+        } else {
+            alert('Você não tem mais bandeiras disponíveis!');
         }
         
         checkWin();
@@ -271,7 +281,9 @@ function checkWin() {
         const rows = board.length;
         const cols = board[0].length;
         let revealedCount = 0;
+        let correctFlags = 0;
         
+        // Conta células reveladas
         for (let i = 0; i < rows; i++) {
             for (let j = 0; j < cols; j++) {
                 const cell = document.querySelector(`[data-row="${i}"][data-col="${j}"]`);
@@ -279,7 +291,14 @@ function checkWin() {
             }
         }
         
-        if (revealedCount === (rows * cols - totalMines)) {
+        // Verifica se as bandeiras estão corretas
+        flags.forEach(flag => {
+            if (mines.includes(flag)) correctFlags++;
+        });
+        
+        // Verifica vitória
+        if (revealedCount === (rows * cols - totalMines) || 
+            (correctFlags === totalMines && flags.length === totalMines)) {
             gameOver = true;
             clearInterval(timer);
             points = calculatePoints();
@@ -355,7 +374,7 @@ function updateRanking() {
         
         // Adiciona nova pontuação
         ranking.push({
-            name: playerName || 'Anônimo',
+            name: playerName,
             points: points,
             difficulty: currentDifficulty,
             date: new Date().toISOString(),
@@ -370,6 +389,9 @@ function updateRanking() {
         
         // Salva no localStorage
         localStorage.setItem('minesweeperRanking', JSON.stringify(ranking));
+        
+        // Atualiza a exibição do ranking
+        showRanking();
     } catch (error) {
         console.error('Erro ao atualizar ranking:', error);
     }
@@ -396,12 +418,12 @@ function showRanking() {
                         (entry.time % 60).toString().padStart(2, '0');
             
             div.innerHTML = `
-                <span class="rank">${index + 1}</span>
-                <span class="name">${entry.name}</span>
-                <span class="difficulty">${entry.difficulty}</span>
-                <span class="points">${entry.points}</span>
-                <span class="time">${time}</span>
-                <span class="date">${date}</span>
+                <div class="rank-number">${index + 1}</div>
+                <div class="rank-name">${entry.name}</div>
+                <div class="rank-difficulty">${entry.difficulty}</div>
+                <div class="rank-points">${entry.points}</div>
+                <div class="rank-time">${time}</div>
+                <div class="rank-date">${date}</div>
             `;
             rankingList.appendChild(div);
         });
@@ -417,6 +439,13 @@ function showRanking() {
 // Inicia um novo jogo
 function newGame(custom = false) {
     try {
+        // Solicita o nome do jogador primeiro
+        playerName = prompt('Digite seu nome:', 'Jogador');
+        if (!playerName) playerName = 'Anônimo';
+        
+        // Atualiza o nome do jogador na interface
+        document.getElementById('player-name').textContent = playerName;
+        
         if (custom) {
             const rows = parseInt(prompt('Número de linhas (9-30):', '9'));
             const cols = parseInt(prompt('Número de colunas (9-30):', '9'));
@@ -438,26 +467,23 @@ function newGame(custom = false) {
             switch (diff) {
                 case '1': 
                     config = difficulties.easy;
-                    currentDifficulty = 'easy';
+                    currentDifficulty = 'Fácil';
                     break;
                 case '2': 
                     config = difficulties.medium;
-                    currentDifficulty = 'medium';
+                    currentDifficulty = 'Médio';
                     break;
                 case '3': 
                     config = difficulties.hard;
-                    currentDifficulty = 'hard';
+                    currentDifficulty = 'Difícil';
                     break;
                 default: 
                     config = difficulties.easy;
-                    currentDifficulty = 'easy';
+                    currentDifficulty = 'Fácil';
             }
             
             initGame(config.rows, config.cols, config.mines);
         }
-        
-        playerName = prompt('Digite seu nome:', 'Jogador');
-        if (!playerName) playerName = 'Anônimo';
     } catch (error) {
         console.error('Erro ao iniciar novo jogo:', error);
         alert('Erro ao iniciar o jogo. Por favor, tente novamente.');
@@ -471,6 +497,7 @@ function toggleFlagMode() {
         const btn = document.getElementById('flag-btn');
         if (btn) {
             btn.textContent = isFlagMode ? 'Modo Bandeira' : 'Modo Revelar';
+            btn.style.backgroundColor = isFlagMode ? '#fbbf24' : 'rgba(255, 0, 0, 0.562)';
         }
     } catch (error) {
         console.error('Erro ao alternar modo bandeira:', error);
