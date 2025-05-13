@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha Master</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .game-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .cell {
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cell:hover {
+            background-color: #d6eaf8;
+            transform: translateY(-3px);
+        }
+
+        .cell.x {
+            color: var(--primary-color);
+        }
+
+        .cell.o {
+            color: var(--secondary-color);
+        }
+
+        .cell.winner {
+            background-color: rgba(46, 204, 113, 0.2);
+            animation: pulse 1.5s infinite;
+        }
+
+        .game-info {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .game-status {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+        }
+
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: slideDown 0.5s ease-in-out;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+        }
+
+        .game-modes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .game-mode {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-mode:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-mode i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .game-mode h3 {
+            margin-bottom: 10px;
+        }
+
+        .settings {
+            margin-top: 30px;
+        }
+
+        .settings-option {
+            margin-bottom: 15px;
+        }
+
+        .settings-option label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .settings-option select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        @media (max-width: 600px) {
+            .game-modes {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-mode {
+                width: 100%;
+            }
+            
+            .cell {
+                height: 80px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jogo da Velha Master</h1>
+            <p class="subtitle">O clássico jogo da velha com inteligência artificial</p>
+        </header>
+
+        <div id="main-menu" class="game-container">
+            <h2>Escolha o modo de jogo</h2>
+            <div class="game-modes">
+                <div class="game-mode" onclick="startGame('computer')">
+                    <i class="fas fa-robot"></i>
+                    <h3>Vs Computador</h3>
+                    <p>Jogue contra a máquina</p>
+                </div>
+                <div class="game-mode" onclick="startGame('player')">
+                    <i class="fas fa-users"></i>
+                    <h3>Vs Jogador</h3>
+                    <p>Jogue contra um amigo</p>
+                </div>
+                <div class="game-mode" onclick="showAnalyzer()">
+                    <i class="fas fa-search"></i>
+                    <h3>Analisador</h3>
+                    <p>Analise um tabuleiro</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-screen" class="game-container" style="display: none;">
+            <div class="game-info">
+                <div class="game-status" id="game-status">Vez do jogador X</div>
+                <button class="btn btn-danger" onclick="resetGame()"><i class="fas fa-redo"></i> Reiniciar</button>
+                <button class="btn" onclick="backToMenu()"><i class="fas fa-arrow-left"></i> Voltar ao menu</button>
+            </div>
+            <div class="game-board" id="game-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+        </div>
+
+        <div id="analyzer-screen" class="game-container" style="display: none;">
+            <h2>Analisador de Tabuleiro</h2>
+            <p>Preencha o tabuleiro abaixo com X, O ou deixe vazio</p>
+            
+            <div class="game-board" id="analyzer-board">
+                <div class="cell editable" data-index="0" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="1" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="2" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="3" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="4" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="5" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="6" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="7" onclick="editCell(this)">V</div>
+                <div class="cell editable" data-index="8" onclick="editCell(this)">V</div>
+            </div>
+            
+            <div class="game-info">
+                <button class="btn btn-secondary" onclick="analyzeBoard()"><i class="fas fa-search"></i> Analisar</button>
+                <button class="btn" onclick="backToMenu()"><i class="fas fa-arrow-left"></i> Voltar ao menu</button>
+                <div id="analysis-result" style="margin-top: 20px; font-size: 1.2rem;"></div>
+            </div>
+        </div>
+
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <h2>Configurações do Jogo</h2>
+                <div class="settings">
+                    <div class="settings-option">
+                        <label for="player-symbol">Escolha seu símbolo:</label>
+                        <select id="player-symbol">
+                            <option value="X">X (joga primeiro)</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    <div class="settings-option">
+                        <label for="difficulty">Dificuldade do computador:</label>
+                        <select id="difficulty">
+                            <option value="easy">Fácil</option>
+                            <option value="medium" selected>Médio</option>
+                            <option value="hard">Difícil</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="startGameWithSettings()">Começar Jogo</button>
+                <button class="btn" onclick="hideModal('settings-modal')">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="result-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="result-title">Resultado do Jogo</h2>
+                <p id="result-message"></p>
+                <button class="btn btn-secondary" onclick="resetGame()">Jogar Novamente</button>
+                <button class="btn" onclick="backToMenu()">Voltar ao Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis do jogo
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameMode = '';
+        let playerSymbol = 'X';
+        let computerSymbol = 'O';
+        let difficulty = 'medium';
+        let gameActive = true;
+        let playerVsPlayer = false;
+
+        // Elementos do DOM
+        const cells = document.querySelectorAll('.cell');
+        const gameStatus = document.getElementById('game-status');
+        const mainMenu = document.getElementById('main-menu');
+        const gameScreen = document.getElementById('game-screen');
+        const analyzerScreen = document.getElementById('analyzer-screen');
+        const analysisResult = document.getElementById('analysis-result');
+
+        // Inicia o jogo no modo especificado
+        function startGame(mode) {
+            gameMode = mode;
+            
+            if (mode === 'computer') {
+                showModal('settings-modal');
+            } else if (mode === 'player') {
+                playerVsPlayer = true;
+                playerSymbol = 'X';
+                computerSymbol = 'O';
+                initializeGame();
+            } else if (mode === 'analyzer') {
+                showAnalyzer();
+            }
+        }
+
+        // Inicia o jogo com as configurações escolhidas
+        function startGameWithSettings() {
+            playerSymbol = document.getElementById('player-symbol').value;
+            computerSymbol = playerSymbol === 'X' ? 'O' : 'X';
+            difficulty = document.getElementById('difficulty').value;
+            playerVsPlayer = false;
+            
+            hideModal('settings-modal');
+            initializeGame();
+        }
+
+        // Mostra o analisador de tabuleiro
+        function showAnalyzer() {
+            mainMenu.style.display = 'none';
+            gameScreen.style.display = 'none';
+            analyzerScreen.style.display = 'block';
+            
+            // Resetar o tabuleiro do analisador
+            const analyzerCells = document.querySelectorAll('#analyzer-board .cell');
+            analyzerCells.forEach(cell => {
+                cell.textContent = 'V';
+                cell.className = 'cell editable';
+            });
+            
+            analysisResult.textContent = '';
+        }
+
+        // Inicializa o jogo
+        function initializeGame() {
+            mainMenu.style.display = 'none';
+            gameScreen.style.display = 'block';
+            analyzerScreen.style.display = 'none';
+            
+            // Resetar o tabuleiro
+            board = ['', '', '', '', '', '', '', '', ''];
+            gameActive = true;
+            currentPlayer = 'X';
+            
+            // Atualizar status
+            updateGameStatus();
+            
+            // Limpar células
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.className = 'cell';
+            });
+        }
+
+        // Atualiza o status do jogo
+        function updateGameStatus() {
+            if (!playerVsPlayer) {
+                if (currentPlayer === playerSymbol) {
+                    gameStatus.textContent = 'Sua vez!';
+                } else {
+                    gameStatus.textContent = 'Vez do computador...';
+                }
+            } else {
+                gameStatus.textContent = `Vez do jogador ${currentPlayer}`;
+            }
+        }
+
+        // Manipula o clique em uma célula
+        function handleCellClick(e) {
+            const index = e.target.getAttribute('data-index');
+            
+            // Verificar se a célula está vazia e o jogo está ativo
+            if (board[index] !== '' || !gameActive) return;
+            
+            // Fazer a jogada do jogador humano
+            makeMove(index, currentPlayer);
+            
+            // Verificar o estado do jogo
+            checkGameState();
+            
+            // Se for modo contra computador e não for o fim do jogo, fazer jogada do computador
+            if (!playerVsPlayer && gameActive && currentPlayer === computerSymbol) {
+                setTimeout(computerMove, 800);
+            }
+        }
+
+        // Faz uma jogada
+        function makeMove(index, player) {
+            board[index] = player;
+            const cell = document.querySelector(`.cell[data-index="${index}"]`);
+            cell.textContent = player;
+            cell.classList.add(player.toLowerCase());
+            
+            // Alternar jogador
+            currentPlayer = player === 'X' ? 'O' : 'X';
+            updateGameStatus();
+        }
+
+        // Verifica o estado do jogo
+        function checkGameState() {
+            const winner = checkWinner();
+            
+            if (winner) {
+                gameActive = false;
+                endGame(`Jogador ${winner} venceu!`, winner);
+            } else if (isBoardFull()) {
+                gameActive = false;
+                endGame('Empate! O jogo deu velha!');
+            }
+        }
+
+        // Verifica se há um vencedor
+        function checkWinner() {
+            // Combinações de vitória
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
+                [0, 4, 8], [2, 4, 6]             // diagonais
+            ];
+            
+            for (const pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    // Destacar células vencedoras
+                    document.querySelector(`.cell[data-index="${a}"]`).classList.add('winner');
+                    document.querySelector(`.cell[data-index="${b}"]`).classList.add('winner');
+                    document.querySelector(`.cell[data-index="${c}"]`).classList.add('winner');
+                    
+                    return board[a];
+                }
+            }
+            
+            return null;
+        }
+
+        // Verifica se o tabuleiro está cheio (empate)
+        function isBoardFull() {
+            return board.every(cell => cell !== '');
+        }
+
+        // Finaliza o jogo
+        function endGame(message, winner = null) {
+            document.getElementById('result-title').textContent = winner ? 'Vitória!' : 'Empate!';
+            document.getElementById('result-message').textContent = message;
+            showModal('result-modal');
+        }
+
+        // Lógica da jogada do computador
+        function computerMove() {
+            if (!gameActive) return;
+            
+            let move;
+            
+            // Diferentes níveis de dificuldade
+            if (difficulty === 'easy') {
+                move = getRandomMove();
+            } else if (difficulty === 'medium') {
+                // 70% chance de jogada inteligente, 30% aleatória
+                move = Math.random() < 0.7 ? getSmartMove() : getRandomMove();
+            } else {
+                // Dificuldade difícil - sempre jogada inteligente
+                move = getSmartMove();
+            }
+            
+            makeMove(move, computerSymbol);
+            checkGameState();
+        }
+
+        // Obtém uma jogada aleatória
+        function getRandomMove() {
+            const emptyCells = board.map((cell, index) => cell === '' ? index : null).filter(val => val !== null);
+            return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        }
+
+        // Obtém uma jogada inteligente
+        function getSmartMove() {
+            // 1. Verificar se pode vencer na próxima jogada
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = computerSymbol;
+                    if (checkWinner()) {
+                        board[i] = '';
+                        return i;
+                    }
+                    board[i] = '';
+                }
+            }
+            
+            // 2. Verificar se precisa bloquear o jogador
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = playerSymbol;
+                    if (checkWinner()) {
+                        board[i] = '';
+                        return i;
+                    }
+                    board[i] = '';
+                }
+            }
+            
+            // 3. Tentar ocupar o centro
+            if (board[4] === '') return 4;
+            
+            // 4. Tentar ocupar os cantos
+            const corners = [0, 2, 6, 8];
+            const emptyCorners = corners.filter(index => board[index] === '');
+            if (emptyCorners.length > 0) {
+                return emptyCorners[Math.floor(Math.random() * emptyCorners.length)];
+            }
+            
+            // 5. Tentar ocupar os meios das bordas
+            const edges = [1, 3, 5, 7];
+            const emptyEdges = edges.filter(index => board[index] === '');
+            if (emptyEdges.length > 0) {
+                return emptyEdges[Math.floor(Math.random() * emptyEdges.length)];
+            }
+            
+            // Se tudo mais falhar, retorna uma jogada aleatória (não deveria acontecer)
+            return getRandomMove();
+        }
+
+        // Reinicia o jogo
+        function resetGame() {
+            hideModal('result-modal');
+            initializeGame();
+        }
+
+        // Volta para o menu principal
+        function backToMenu() {
+            hideModal('result-modal');
+            mainMenu.style.display = 'block';
+            gameScreen.style.display = 'none';
+            analyzerScreen.style.display = 'none';
+        }
+
+        // Mostra um modal
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Esconde um modal
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Edita uma célula no analisador
+        function editCell(cell) {
+            const current = cell.textContent;
+            let next;
+            
+            if (current === 'V') next = 'X';
+            else if (current === 'X') next = 'O';
+            else next = 'V';
+            
+            cell.textContent = next;
+            cell.className = `cell editable ${next.toLowerCase()}`;
+        }
+
+        // Analisa o tabuleiro no modo analisador
+        function analyzeBoard() {
+            const analyzerCells = document.querySelectorAll('#analyzer-board .cell');
+            const testBoard = Array.from(analyzerCells).map(cell => 
+                cell.textContent === 'V' ? '' : cell.textContent
+            );
+            
+            // Verificar se o tabuleiro é válido
+            const xCount = testBoard.filter(cell => cell === 'X').length;
+            const oCount = testBoard.filter(cell => cell === 'O').length;
+            
+            if (Math.abs(xCount - oCount) > 1) {
+                analysisResult.textContent = "Tabuleiro INVÁLIDO: Diferença muito grande entre X e O";
+                analysisResult.style.color = 'var(--danger-color)';
+                return;
+            }
+            
+            // Verificar vitórias
+            const checkWin = (player) => {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
+                    [0, 4, 8], [2, 4, 6]             // diagonais
+                ];
+                
+                return winPatterns.some(pattern => 
+                    pattern.every(index => testBoard[index] === player)
+                );
+            };
+            
+            const xWins = checkWin('X');
+            const oWins = checkWin('O');
+            
+            if (xWins && oWins) {
+                analysisResult.textContent = "Tabuleiro INVÁLIDO: Ambos os jogadores venceram";
+                analysisResult.style.color = 'var(--danger-color)';
+                return;
+            }
+            
+            if (xWins && xCount <= oCount) {
+                analysisResult.textContent = "Tabuleiro INVÁLIDO: X venceu mas não foi o último a jogar";
+                analysisResult.style.color = 'var(--danger-color)';
+                return;
+            }
+            
+            if (oWins && oCount !== xCount) {
+                analysisResult.textContent = "Tabuleiro INVÁLIDO: O venceu mas não foi o último a jogar";
+                analysisResult.style.color = 'var(--danger-color)';
+                return;
+            }
+            
+            if (xWins) {
+                analysisResult.textContent = "Vitória do jogador X!";
+                analysisResult.style.color = 'var(--primary-color)';
+                return;
+            }
+            
+            if (oWins) {
+                analysisResult.textContent = "Vitória do jogador O!";
+                analysisResult.style.color = 'var(--secondary-color)';
+                return;
+            }
+            
+            // Verificar empate
+            if (testBoard.every(cell => cell !== '')) {
+                analysisResult.textContent = "Empate (Deu velha)!";
+                analysisResult.style.color = 'var(--warning-color)';
+                return;
+            }
+            
+            // Jogo em andamento
+            const nextPlayer = xCount === oCount ? 'X' : 'O';
+            analysisResult.textContent = `Jogo em andamento. Próximo jogador: ${nextPlayer}`;
+            analysisResult.style.color = 'var(--dark-color)';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adicionar listeners para as células do jogo
+            cells.forEach(cell => {
+                cell.addEventListener('click', handleCellClick);
+            });
+        });
+    </script>
+</body>
+</html>
