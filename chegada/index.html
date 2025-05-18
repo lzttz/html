@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para Nosso Encontro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: url(IMG_0828.JPEG);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.726);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            width: 600px;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #000000;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-label {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: floatHeart 6s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .date-input {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #c70000;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            margin-top: 2rem;
+            color: #ff0000;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-value {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contagem Regressiva</h1>
+        <p>Contando os segundos para estar com você de novo.</p>
+        
+        <div class="date-input">
+            <label for="date">Data do Encontro:</label>
+            <input type="datetime-local" id="date">
+            <button onclick="setDate()">Definir Data</button>
+        </div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">0</div>
+                <div class="countdown-label">Dias</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">0</div>
+                <div class="countdown-label">Horas</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">0</div>
+                <div class="countdown-label">Minutos</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">0</div>
+                <div class="countdown-label">Segundos</div>
+            </div>
+        </div>
+        
+        <div class="message" id="message">Chegou o momento tão esperado! ❤️</div>
+        
+        <div class="footer">Com amor, esperando por você...</div>
+    </div>
+
+    <script>
+        // Função para criar corações flutuantes
+        function createHearts() {
+            const body = document.querySelector('body');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Posição aleatória na largura da tela
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Velocidade aleatória
+            const duration = Math.random() * 5 + 5; // 5-10 segundos
+            heart.style.animation = `floatHeart ${duration}s linear infinite`;
+            
+            // Tamanho aleatório
+            const size = Math.random() * 20 + 10; // 10-30px
+            heart.style.fontSize = size + 'px';
+            
+            body.appendChild(heart);
+            
+            // Remover o coração após a animação para não sobrecarregar a página
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        // Criar corações a cada 300ms
+        setInterval(createHearts, 300);
+        
+        let targetDate;
+        
+        // Função para definir a data do encontro
+        function setDate() {
+            const dateInput = document.getElementById('date').value;
+            if (dateInput) {
+                targetDate = new Date(dateInput).getTime();
+                localStorage.setItem('targetDate', targetDate);
+                updateCountdown();
+                // Animar os elementos após definir a data
+                document.querySelectorAll('.countdown-value').forEach(item => {
+                    item.classList.add('pulse');
+                    setTimeout(() => {
+                        item.classList.remove('pulse');
+                    }, 2000);
+                });
+            } else {
+                alert('Por favor, selecione uma data válida!');
+            }
+        }
+        
+        // Verificar se já existe uma data salva
+        const savedDate = localStorage.getItem('targetDate');
+        if (savedDate) {
+            targetDate = parseInt(savedDate);
+            const date = new Date(parseInt(savedDate));
+            document.getElementById('date').value = date.toISOString().slice(0, 16);
+        }
+        
+        // Função para atualizar a contagem regressiva
+        function updateCountdown() {
+            if (!targetDate) return;
+            
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            // Quando chegar na data
+            if (distance < 0) {
+                document.getElementById('days').innerText = "0";
+                document.getElementById('hours').innerText = "0";
+                document.getElementById('minutes').innerText = "0";
+                document.getElementById('seconds').innerText = "0";
+                document.getElementById('message').style.display = "block";
+                
+                // Aumentar a frequência dos corações
+                setInterval(createHearts, 100);
+                return;
+            }
+            
+            // Calcular dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Atualizar os valores
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        
+        // Atualizar a contagem regressiva a cada segundo
+        setInterval(updateCountdown, 1000);
+        
+        // Iniciar a contagem regressiva
+        updateCountdown();
+    </script>
+</body>
+</html>
