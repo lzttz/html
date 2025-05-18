@@ -23,12 +23,11 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
-        }
+	}
 
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.726);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -39,7 +38,7 @@
         }
 
         h1 {
-            color: #ff6b6b;
+            color: #ff00008c;
             margin-bottom: 1rem;
             font-size: 2.5rem;
         }
@@ -66,7 +65,7 @@
         .countdown-value {
             font-size: 3rem;
             font-weight: bold;
-            color: #000000;
+            color: #ff0000;
             background-color: rgba(255, 255, 255, 0.9);
             width: 100px;
             height: 100px;
@@ -74,7 +73,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -111,36 +110,18 @@
             }
         }
 
-        .date-input {
+        .date-display {
             margin-bottom: 2rem;
+            background-color: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed #ff6b6b;
         }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #c70000;
-        }
-
-        input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-        }
-
-        button {
-            background-color: #000000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #ff5252;
+        
+        .date-display p {
+            margin: 0;
+            color: #000000;
+            font-size: 1.3rem;
         }
 
         .message {
@@ -169,7 +150,7 @@
 
         .footer {
             margin-top: 2rem;
-            color: #ff0000;
+            color: #000000;
             font-style: italic;
         }
 
@@ -191,10 +172,8 @@
         <h1>Contagem Regressiva</h1>
         <p>Contando os segundos para estar com você de novo.</p>
         
-        <div class="date-input">
-            <label for="date">Data do Encontro:</label>
-            <input type="datetime-local" id="date">
-            <button onclick="setDate()">Definir Data</button>
+        <div class="date-display">
+            <p>Data do Encontro: <strong>06/06/2025 às 05:20</strong></p>
         </div>
         
         <div class="countdown">
@@ -251,39 +230,11 @@
         // Criar corações a cada 300ms
         setInterval(createHearts, 300);
         
-        let targetDate;
-        
-        // Função para definir a data do encontro
-        function setDate() {
-            const dateInput = document.getElementById('date').value;
-            if (dateInput) {
-                targetDate = new Date(dateInput).getTime();
-                localStorage.setItem('targetDate', targetDate);
-                updateCountdown();
-                // Animar os elementos após definir a data
-                document.querySelectorAll('.countdown-value').forEach(item => {
-                    item.classList.add('pulse');
-                    setTimeout(() => {
-                        item.classList.remove('pulse');
-                    }, 2000);
-                });
-            } else {
-                alert('Por favor, selecione uma data válida!');
-            }
-        }
-        
-        // Verificar se já existe uma data salva
-        const savedDate = localStorage.getItem('targetDate');
-        if (savedDate) {
-            targetDate = parseInt(savedDate);
-            const date = new Date(parseInt(savedDate));
-            document.getElementById('date').value = date.toISOString().slice(0, 16);
-        }
+        // Define a data fixa para 06/06/2025 às 05:20
+        const targetDate = new Date(2025, 5, 6, 5, 20, 0).getTime();
         
         // Função para atualizar a contagem regressiva
         function updateCountdown() {
-            if (!targetDate) return;
-            
             const now = new Date().getTime();
             const distance = targetDate - now;
             
@@ -313,11 +264,19 @@
             document.getElementById('seconds').innerText = seconds;
         }
         
-        // Atualizar a contagem regressiva a cada segundo
-        setInterval(updateCountdown, 1000);
-        
         // Iniciar a contagem regressiva
+        setInterval(updateCountdown, 1000);
         updateCountdown();
+        
+        // Animar os elementos ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.countdown-value').forEach(item => {
+                item.classList.add('pulse');
+                setTimeout(() => {
+                    item.classList.remove('pulse');
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
