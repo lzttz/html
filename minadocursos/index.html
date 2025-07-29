@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Minado</title>
+    <link rel="stylesheet" href="inde.css">
+</head>
+<body>
+    <div class="container">
+        <div class="banner">
+            <h1>MINESWEEPER</h1>
+        </div>
+        
+        <div id="menu" class="menu">
+            <h2>Menu Principal</h2>
+            <button onclick="newGame(false)">Novo Jogo</button>
+            <button onclick="newGame(true)">Personalizado</button>
+            <button onclick="resumeGame()">Continuar</button>
+            <button onclick="loadGame()">Carregar</button>
+            <button onclick="saveGame()">Salvar</button>
+            <button onclick="showRanking()">Ranking</button>
+            <button onclick="showHelp()">Ajuda</button>
+            <button onclick="confirmExit()">Sair</button>
+        </div>
+        
+        <div id="game" class="game-container" style="display: none;">
+            <div class="game-info">
+                <h2 id="player-name"></h2>
+                <p>Pontos: <span id="points">0</span> | Bombas: <span id="bombs">0</span></p>
+                <p>Tempo: <span id="time">00:00</span></p>
+            </div>
+            
+            <div id="board" class="board"></div>
+            
+            <div class="controls">
+                <button onclick="toggleFlagMode()" id="flag-btn">Modo Revelar</button>
+                <button onclick="giveUp()">Desistir</button>
+                <button onclick="backToMenu()">Menu</button>
+            </div>
+        </div>
+        
+        <div id="help" class="help" style="display: none;">
+            <h2>AJUDA</h2>
+            <h3>Como Jogar:</h3>
+            <p>Clique em uma célula para revelá-la</p>
+            <p>Use o modo bandeira para marcar minas</p>
+            <p>Os números indicam minas próximas</p>
+            <p>Evite as minas e revele todas as células seguras</p>
+            
+            <h3>Controles:</h3>
+            <p>Clique esquerdo: Revelar célula</p>
+            <p>Clique direito: Marcar/desmarcar mina</p>
+            <p>Modo Bandeira: Alterna entre revelar e marcar</p>
+            
+            <button onclick="hideHelp()">Voltar</button>
+        </div>
+        
+        <div id="ranking" class="ranking" style="display: none;">
+            <h2>RANKING</h2>
+            <div id="ranking-list"></div>
+            <button onclick="hideRanking()">Voltar</button>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
