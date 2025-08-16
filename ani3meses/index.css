@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #333;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.envelope .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #e74c3c;
+    border-radius: 5px;
+    z-index: 3;
+    transform-origin: bottom;
+    transition: all 0.3s 0.3s ease;
+}
+
+.envelope .front:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #c0392b;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+.envelope .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #c0392b;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+/* Carta em tela cheia */
+.fullscreen-letter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+}
+
+.fullscreen-letter.show {
+    opacity: 1;
+}
+
+.fullscreen-letter .letter-content {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid #f8d7da;
+}
+
+.fullscreen-letter h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #e74c3c;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.fullscreen-letter p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    text-align: right;
+    margin-top: 30px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #e74c3c;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #f8d7da;
+    transform: rotate(90deg);
+}
+
+button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+button:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e74c3c"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+    background-size: contain;
+    opacity: 0;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .envelope {
+        width: 250px;
+        height: 166px;
+    }
+    
+    .fullscreen-letter .letter-content {
+        padding: 20px;
+    }
+    
+    .fullscreen-letter h1 {
+        font-size: 1.8rem;
+    }
+    
+    .fullscreen-letter p {
+        font-size: 1rem;
+    }
+    
+    .signature {
+        font-size: 24px;
+    }
+}

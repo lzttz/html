@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor para Você</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="envelope" id="envelope">
+            <div class="front"></div>
+            <div class="back"></div>
+        </div>
+        <button id="openBtn">Abrir Carta</button>
+        <button onclick="window.location.href='index2.html'" id="openBtn">Nossos Momentos</button>
+        <button id="musicBtn" class="hidden">🎵 Ligar Música</button>
+        <audio id="bgMusic" loop>
+            <source src="Kiaz - Cê tá bem (Remix) feat. Dfideliz (AUDIO) - Kiaz.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </div>
+
+    <!-- Carta em tela cheia -->
+    <div class="fullscreen-letter hidden" id="fullscreenLetter">
+        <div class="letter-content">
+            <button id="closeBtn" class="close-btn">×</button>
+            <h1>Para o Amor da Minha Vida</h1>
+            <div class="content">
+                <p>Meu amor,</p>
+                <p>Amor, primeiramente, venho me redimir por todo esse tempo que nao fui 100% com vc, tem muitas coisas que aconteceu nesse tempo,porem, estou disposto daqui pra frente fazer tudo diferente. Eu realmente tenho a certeza que voce e o amor da minha vida estou esperando voce chegar com uma ansiedade imensa, .</p>
+                <p>Pareceu uma eternidade esse tempo sem te ver, sem te tocar e sem te olhar nos olhos.</p>
+                <p>Cada dia longe de você foi como uma página em branco no livro da minha vida - completa apenas quando você está comigo, diante disso, cada dia que se passa mais me pergunto o que fiz pra merecer esse castigo de ficar longe de voce.</p>
+                <p>Não há palavras que possam expressar o quanto senti sua falta, mas hoje, finalmente, esse período de saudade chega ao fim.</p>
+                <p>Preparei esse pequeno gesto para demonstrar um pouco do que sinto por você, entao, espero que goste. Eu te amo imensamente.</p>
+                <p>Meu amor, hoje eu senti uma vontade imensa de parar tudo só para te dizer o quanto você é especial para mim. Às vezes, as palavras parecem pequenas diante de tudo o que sinto, mas eu quero tentar expressar um pouco do que habita no meu coração.
+
+                Desde o dia em que você entrou na minha vida, tudo ganhou mais cor. Você trouxe com você uma luz que ilumina até os meus dias mais cinzentos. Seu sorriso é o meu porto seguro, seu abraço é o meu lugar favorito no mundo, e o seu amor é o maior presente que eu poderia receber, obrigado por estar comigo.
+
+                Eu me pego pensando em como a vida é incrível por ter nos unido. Cada momento ao seu lado – seja rindo até a barriga doer, conversando sobre nada e tudo ao mesmo tempo, ou até mesmo nos silêncios que são tão confortáveis – me faz perceber que eu não quero mais viver sem você. Você é a pessoa que eu escolheria todos os dias, em todas as vidas possíveis.</p>
+
+                <p>Amo a forma como você me entende sem eu precisar dizer nada. Amo cuidar de voce nos pequenos detalhes, sua risada contagiante e até mesmo suas manias que me fazem sorrir.
+
+                Quero que você saiba que eu não estou aqui só nos momentos felizes. Eu quero estar ao seu lado nos dias difíceis, segurando sua mão e te lembrando que, juntos, a gente supera qualquer coisa, como a gnete faz todos os dias com o fato da distancia. Você nunca estará sozinha, sempre vou estar aqui com voce.</p>
+
+                <p>Pra finalizar, sei que nao e facil ter uma relacao igual a nossa, mais tenho a certeza que cada pingo de saudade vale a pena quando te reencontro.</p>
+                
+                <p>Alem disso, vou aproveitar esse momento para falar do nosso grande dia 12. Quero deixar claro que esses foi os 3(2) meses mais feliz da minha vida, em que me dediquei 100% a voce e estou relmente bem com isso, me sinto melhor do que nunca. Voce e meu ponto de paz, minha luz, minha forma de acreditar que o amor ainda esta vivo. Sou eternamente grato por ter voce em minha vida, voce e a pessoa que sempre sonhei, que finalmente deu certo apesar de muitas desavencas, tbm quero agradecer por todos os momentos que passamos ate aqui, com voce tudo fica mais facil. Parece pouco tempo, mas com voce eu vivi momentos incríveis. Cada risada, cada conversa, cada abraço… tudo com você tem um sabor diferente, mais leve, tudo e mais perfeito. Esse tempo só o comecinho de uma história linda que vamos escrever juntos. Te amo mais do que palavras podem explicar. </p>
+                
+                <p class="signature">Com todo meu amor,<br><span id="signatureName">[Seu Nome] Luiz Felipe</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hearts-container"></div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
