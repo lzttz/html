@@ -19,18 +19,18 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-image: url(12.jpg);
+            background-image: url(1.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-	}
+        }
 
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.424);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.54);
             position: relative;
             z-index: 2;
             max-width: 90%;
@@ -81,7 +81,7 @@
         .countdown-label {
             margin-top: 10px;
             font-size: 1rem;
-            color: #666;
+            color: #000000;
         }
 
         .heart {
@@ -173,7 +173,7 @@
         <p>Contando os segundos para estar com você de novo.</p>
         
         <div class="date-display">
-            <p>Data do Encontro: <strong>26/08/2025 às 08:40</strong></p>
+            <p>Data do Encontro: <strong>17/12/2025 às 02:20</strong></p>
         </div>
         
         <div class="countdown">
@@ -230,8 +230,8 @@
         // Criar corações a cada 300ms
         setInterval(createHearts, 300);
         
-        // Define a data fixa para 26/08/2025 às 08:40
-        const targetDate = new Date(2025, 7, 26, 8, 40, 0).getTime();
+        // Define a data fixa para 17/12/2025 às 02:20
+        const targetDate = new Date(2025, 11, 17, 2, 20, 0).getTime();
         
         // Função para atualizar a contagem regressiva
         function updateCountdown() {
